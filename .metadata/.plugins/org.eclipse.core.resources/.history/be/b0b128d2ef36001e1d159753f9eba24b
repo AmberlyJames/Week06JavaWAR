@@ -1,0 +1,72 @@
+package week06JavaFinal;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class App {
+	
+	
+	public static void main(String[] args) {
+	
+		Deck gameDeck = new Deck();
+		gameDeck.shuffle();
+		int draws = 0;
+		
+		List<Card> player1Hand = new ArrayList<Card>();
+		List<Card> player2Hand = new ArrayList<Card>();
+		
+		Player player1 = new Player("Harold", player1Hand , 0);
+		player1.setHand(player1Hand);
+		player1.setScore(0);
+		Player player2 = new Player("Betsy", player2Hand , 0);
+		player2.setHand(player2Hand);
+		player2.setScore(0);
+		
+		
+		
+		for (int i = 0; i < 52 ; i++) {
+			Card cardDrawn = gameDeck.draw();
+			
+			if (i % 2 == 0) {
+				player1Hand.add(cardDrawn);
+			}else {
+				player2Hand.add(cardDrawn);
+			}	
+		}
+		player1.describe();
+		player2.describe();
+		
+		System.out.println("\nAll cards have been dealt");
+		System.out.println("Let the WAR begin!!!");
+		System.out.println("\nPlayer hand size: " + player1Hand.size());
+		
+		for (int i = 26; i > 0; i--) {
+			Card player1Card = player1.flip();
+			Card player2Card = player2.flip();
+			if (player1Card.getValue() > player2Card.getValue()) {
+				player1.incrementScore();
+			} else if (player1Card.getValue() < player2Card.getValue()) {
+				player2.incrementScore();
+			} else {
+				draws++;
+			}
+			System.out.println("The current score is: " + player1.score + "(player1) against " + player2.score + "(player2) with " + draws + " draws!");
+			System.out.println("Player hand size: " + player1Hand.size());
+		}
+		System.out.println("--------------------------------------");
+		
+		System.out.println("Player1's score is: " + player1.score);
+		System.out.println("Player2's score is: " + player2.score);
+		System.out.println("Number of rounds ending in a draw: " + draws);
+		
+		System.out.println("--------------------------------------");
+		
+		if (player1.score > player2.score) {
+			System.out.println(player1.name + " is the winner with a score of: " + player1.score);
+		}else if (player2.score > player1.score) {
+			System.out.println(player2.name + " is the winner with a score of: " + player2.score);
+		}else {
+			System.out.println("It's a draw!");
+		}		
+	}
+}

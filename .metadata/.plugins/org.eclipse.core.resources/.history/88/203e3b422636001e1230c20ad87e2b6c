@@ -1,0 +1,36 @@
+package week06JavaFinal;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class App {
+	
+	
+	public static void main(String[] args) {
+	
+		Deck gameDeck = new Deck();
+		List<Card> player1Hand = new ArrayList<Card>();
+		List<Card> player2Hand = new ArrayList<Card>();
+		
+		Player Harold = new Player("Harold", player1Hand , 0);
+		Player Betsy = new Player("Betsy", player2Hand , 0);
+		
+		for (int i = 1; i <= 52; i++) {
+			Card cardDrawn = gameDeck.draw();
+			
+			if (i % 2 ==0) {
+				player1Hand.add(cardDrawn);
+			}else {
+				player2Hand.add(cardDrawn);
+			}
+			
+		}
+	gameDeck.describe();
+	Harold.describe();
+	Betsy.describe();
+	}
+	
+	
+	
+
+}

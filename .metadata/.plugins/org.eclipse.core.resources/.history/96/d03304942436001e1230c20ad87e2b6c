@@ -1,0 +1,11 @@
+package week06JavaFinal;
+
+import java.util.List;
+
+public class Player {
+	List<Card> hand;
+	int score;
+	String name;
+
+}
+

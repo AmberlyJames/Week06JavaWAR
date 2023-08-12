@@ -1,0 +1,76 @@
+package week06JavaFinal;
+
+import java.util.List;
+
+public class Player {
+	
+	String name;
+	List<Card> hand;
+	int score;
+	
+	
+	Player(String name, List<Card> hand, int score){
+		this.name = name;
+		this.hand = hand;
+		score = 0;
+		
+	}
+	
+	
+	public Card flip() {
+		Card card = this.hand.remove(0);
+		return card;
+	}
+	public List<Card> draw(Deck deck) {
+		Card card = deck.draw();
+		hand.add(card);
+		return hand;
+	}
+	public void incrementScore() {
+		this.score ++;
+	}
+	
+	
+	public List<Card> getHand() {
+		return hand;
+	}
+
+
+	public void setHand(List<Card> hand) {
+		this.hand = hand;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void describe() {
+		System.out.println(name + " has the following cards: " + hand + "with a score of " + score);
+
+		
+	}
+
+}
+
+	
+	
+	
+	
+	
+		
+		
+	
+
+		
+	
+	
+	
+	
+
+
+
